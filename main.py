@@ -25,7 +25,7 @@ import json
 from kivy.core.window import Window
 
 DEFAULT_SHOWTIME = 10
-DEFAULT_NBITEMS = None
+DEFAULT_NBITEMS = 12
 MAX_NBITEMS = None
 
 
@@ -94,7 +94,7 @@ class MemoryButton(Button):
                     print("youhou!!")
                     self.parent.left+=1
                     if self.playsound:
-                        if self.sound.status != 'stop':
+                        if self.sound.state != 'stop':
                             self.sound.stop()
                         self.sound.play()
                    
@@ -377,7 +377,7 @@ def loadData():
     return sounds,icons
  
 
-class MyAnimalsApp(App):
+class MyLolApp(App):
     
     def loadLevel(self):
         fileName =  join(App.get_running_app().user_data_dir,'level.dat')
@@ -438,7 +438,7 @@ class MyAnimalsApp(App):
         root.add_widget(Image(source='goat5.jpg',allow_stretch=True,keep_ratio=False))
         root.add_widget(playZone)
         root.add_widget(difficulty_buttons)
-        #Adicionei restartGame pq estava bugando anteriormente, prexisava clicar 2x no notão para funcionar
+        #Adicionei restartGame pq estava bugando anteriormente, precisava clicar 2x no notão para funcionar
         easy_button.bind(on_press=g.restartGame)
         easy_button.bind(on_press=g.on_start_easy)
         medium_button.bind(on_press=g.restartGame)
@@ -450,4 +450,4 @@ class MyAnimalsApp(App):
         return root
 
 if __name__ in ('__main__', '__android__'):
-    MyAnimalsApp().run()
+    MyLolApp().run()
